@@ -1,11 +1,10 @@
 from ServiceManager import ServiceManager
-# from BuiltInService
-import xml.etree.ElementTree as ET
-import requests
 import datetime
-# from BuiltInService import re
-# from BuiltInService import *
 import sys
+import re 
+import json
+
+
 # from flask import Flask
 # from flask import request
 
@@ -30,37 +29,15 @@ print ("\n")
 
 #========================= API GETWAY ================================
 # @app.route("/<company>/<service>", methods = ["POST"])
-def pickup(company, service):
+def pickup(event, context):
 	# paramlist = request.get_json(silent=True)
-	paramlist={
-	  "requestor": {
-	    "name": "Rikhil",
-	    "phone": "23162",
-	    "company": "Saurabh"
-	  },
-	  "place": {
-	    "line1": "123 Test Ave",
-	    "line2": "Test Bus Park",
-	    "package_location": "Reception",
-	    "city": "PARIS",
-	    "post_code": "75018",
-	    "country_code": "FR"
-	  },
-	  "pick_up": {
-	    "pickup_date": "2017-06-13",
-	    "slot_id": "string",
-	    "ready_by_time": "10:20",
-	    "close_time": "23:20",
-	    "number_of_pieces": 0,
-	    "special_instructions": "1 palett of 200 kgs - Vehicule avec hayon"
-	  },
-	  "shipment_details": {
-	    "number_of_pieces": 1,
-	    "weight": 200
-	  }
-	}
-	company="dhl"
-	service="pickup"
+	company=event["stage"]
+	company=re.sub(r'[^\w+]','',str(company))
+	service=event["resource_path"]
+	service=re.sub(r'[^\w+]','',str(service))
+	paramlist=json.loads(event["body"])
+	if company!="" and service=="":
+		service="root"
 	return myservice.call_service(company, service, paramlist)
 if __name__=="__main__":
 	app.run()

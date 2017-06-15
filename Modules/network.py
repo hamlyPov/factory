@@ -1,4 +1,4 @@
-import requests
+from BuiltInService import requests
 
 class networking(object):
     """docstring for object_converter"""
@@ -26,7 +26,7 @@ class networking(object):
         if requestType == "post":
             resp = requests.post(url, data=values, headers=headers).text
         elif requestType == "get":
-            resp = requests.post(url, data=values, headers=headers).text
+            resp = requests.get(url, data=values, headers=headers).text
         return resp
 
     # more networking functions can be implemted here...

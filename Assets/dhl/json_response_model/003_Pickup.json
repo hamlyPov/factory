@@ -1,5 +1,3 @@
 {
-	"ConfirmationNumber": "ConfirmationNumber", 
-	"ReadyByTime": "ReadyByTime",
-	"CallInTime": "CallInTime"
+	"pickup_id": "ConfirmationNumber"
 }

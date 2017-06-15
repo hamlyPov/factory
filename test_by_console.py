@@ -12,10 +12,37 @@ import sys
 myservice = ServiceManager()
 
 # test dhl dropoff service
-paramdhl = {}
-paramdhl["pickup_date"] = "2017-05-26"
-paramdhl["ready_by_time"] = "10:20"
-paramdhl["close_time"] = "14:20"
+# paramdhl = {}
+# paramdhl["pickup_date"] = "2017-05-26"
+# paramdhl["ready_by_time"] = "10:20"
+# paramdhl["close_time"] = "14:20"
+paramdhl={
+  "requestor": {
+    "name": "Rikhil",
+    "phone": "23162",
+    "company": "Saurabh"
+  },
+  "place": {
+    "line1": "123 Test Ave",
+    "line2": "Test Bus Park",
+    "package_location": "Reception",
+    "city": "PARIS",
+    "post_code": "75018",
+    "country_code": "FR"
+  },
+  "pick_up": {
+    "pickup_date": "2017-06-14",
+    "slot_id": "string",
+    "ready_by_time": "10:20",
+    "close_time": "23:20",
+    "number_of_pieces": 0,
+    "special_instructions": "1 palett of 200 kgs - Vehicule avec hayon"
+  },
+  "shipment_details": {
+    "number_of_pieces": 1,
+    "weight": 200
+  }
+}
 myservice.call_service("dhl","pickup", paramdhl)
 
 print ("\n")
